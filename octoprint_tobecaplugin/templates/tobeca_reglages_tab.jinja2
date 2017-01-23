@@ -1,0 +1,108 @@
+<div class="jog-panel" style="display: none;" data-bind="visible: loginState.isUser">
+    <!-- P.I.D. -->
+    <div class="jog-panel">
+        <h1>P.I.D.</h1>
+     	<div style="padding-bottom:10px" >
+             <span>Sélectionnez la température de référence et la tête, puis cliquez sur GO.</span>
+        </div>
+        
+        <div class="input-append" >
+          <span style="padding-right:5px;padding-left:2px">
+                                 <input type="range"   data-bind="value : targetPID , enable:  $root.loginState.isUser() , attr : { max : tempmax }" style="width:170px;vertical-align : middle"   />
+          </span>                                   
+                   
+                <input type="number" class="input-mini text-right tempInput" data-bind=" value: targetPID, enable:  $root.loginState.isUser()">
+                <span class="add-on">&deg;C</span>
+                <div class="btn-group">
+                    <button type="submit" data-bind="click: setTargetPIDMoins, enable:  $root.loginState.isUser()" class="btn">-</button>
+                    <button type="submit" data-bind="click: setTargetPIDPlus, enable: $root.loginState.isUser()" class="btn">+</button>
+                    
+                  
+              
+                    <div class="btn-group control-box">&nbsp;&nbsp;
+ 							<span style="padding-left:20px">
+            					<button class="btn dropdown-toggle" data-toggle="dropdown" data-bind="text: toolSelectName() , enable:   loginState.isUser()">
+                 				<span class="caret"></span>
+           						</button>
+            						<ul class="dropdown-menu" >
+                                       <span data-bind="foreach: control.tools">
+                						<li><a href="#" data-bind="click: $root.modTool($index()), text: name(), enable:   $root.loginState.isUser()"></a></li>
+           								</span>
+                						<li><a href="#" data-bind="click: modTool(-1), text: 'Bed', enable: loginState.isUser()"></a></li>
+                                        
+                                        </ul>
+                			</span>
+				 			
+                                 
+                                   
+                  	</div>
+                
+          		</div> 
+ 	          <div class="pull-right"><button type="submit" data-bind="click: autotunePID, enable: $root.isOperational() && !$root.isPrinting() && !$root.isPaused() && $root.loginState.isUser()" class="btn"> GO </button></div>                                   
+           </div>  
+
+              
+ 
+    </div>
+  <!-- Z-Probe offset -->
+    <div class="jog-panel">
+        <h1>Z-Probe Offset</h1>
+    	           <div style="padding-bottom:10px" >
+					<span>Cliquez sur MAJ pour afficher la valeur actuelle.</span><br>
+                    <span>Modifiez la valeur avec + et -, puis cliquez sur GO.</span>
+                    
+                    </div>
+      	                  
+       
+        <div class="input-append" >
+                              
+                 <button type="submit" data-bind="click: majM851, enable: $root.isOperational() && $root.loginState.isUser()" class="btn"> MAJ </button>  
+                <input type="number" class="input-mini text-right" data-bind=" value: Offset, enable: $root.isOperational() && $root.loginState.isUser()">
+                <span class="add-on">mm</span>
+                <div class="btn-group">
+                    
+                    <button type="submit" data-bind="click: setOffsetMoins, enable: $root.isOperational() && $root.loginState.isUser()" class="btn">-</button>
+                    <button type="submit" data-bind="click: setOffsetPlus, enable: $root.isOperational() && $root.loginState.isUser()" class="btn">+</button>
+                  
+                       
+                                                                
+                  </div>
+                   <div class="pull-right"><button type="submit" data-bind="click: sendOffset, enable: $root.isOperational() && $root.loginState.isUser()" class="btn"> GO </button></div>        
+       			 
+                                      
+                                      
+                                      
+                              
+                                    
+                                    
+                                   
+          </div>     
+ 
+    </div>
+                                    
+ <!-- Test -->
+    <div class="jog-panel">
+        <h1>Commandes</h1>
+    	           
+      	                  
+       
+        <div class="input-append" >
+                              
+                 <button type="submit" data-bind="click: homexyz, enable: $root.isOperational() && $root.loginState.isUser()" class="btn"> Home XYZ </button>  
+               
+                      
+       			 
+                                      
+                                      
+                                      
+                              
+                                    
+                                    
+                                   
+          </div>     
+ 
+    </div>
+                                                                  
+                                    
+</div>
+
